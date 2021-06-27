@@ -1,6 +1,12 @@
-# Useful functions to edit Word Documents with Python-Docx
+# Useful functions to edit Word Documents with Python (python-docx)
 
-Edit existing Word documents (.docx) effortlessly and without changing the original formatting of the document. These tools are very useful if you want to automate document writing or editing and you need to adhere to strict formatting rules.
+Edit existing Word documents effortlessly and without changing the original formatting of the document. These tools are very useful if you want to automate document writing or editing and you need to adhere to strict formatting rules.
+
+## Requirements
+
+Need to have python-docx installed and imported
+
+## Functions
 
 All of these functions work mainly with 'runs', which are sequences of strings with the same formatting style.
 
