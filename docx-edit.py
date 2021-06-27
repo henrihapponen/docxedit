@@ -6,17 +6,17 @@ from docx import Document
 
 # Function definitions
 
-def show_line(old_text):
+def show_line(current_text):
     """Shows the 'line' of text in the doc where the string is found (without replacing anything)"""
 
     global doc
 
     for p in doc.paragraphs:
-        if old_text in p.text:
+        if current_text in p.text:
             inline = p.runs
 
             for i in range(len(inline)):
-                if old_text in inline[i].text:
+                if current_text in inline[i].text:
                     text = inline[i].text
                     inline[i].text = text
             print(p.text)
@@ -51,7 +51,7 @@ def delete_paragraph(paragraph):
     return
 
 
-def remove_lines(first_line, number_of_rows):
+def remove_lines(first_line, number_of_lines):
     """Remove a line including any keyword (first_line), and a certain number of rows after that"""
 
     list_of_paragraphs = []
@@ -68,7 +68,7 @@ def remove_lines(first_line, number_of_rows):
 
             b = 0
             c = 0
-            while b < number_of_rows:
+            while b < number_of_lines:
                 try:
                     print(list_of_paragraphs[a + 1 + b])
                     delete_paragraph(list_of_paragraphs[index + 1 + c])
@@ -87,7 +87,8 @@ if __name__ == '__main__':
     
     document_path = 'your full document path here'
     doc = Document(document_path)
-
+    
+    show_line('Section A')
     replace_string('placeholder', 'new text')
     remove_lines('remove this line', 1)
     remove_lines('remove the next 5 lines', 5)
