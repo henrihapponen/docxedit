@@ -7,7 +7,7 @@ from docx import Document
 # Function definitions
 
 def show_line(current_text):
-    """Shows the 'line' of text in the doc where the string is found (without replacing anything)"""
+    """Shows the 'line' of text in the doc where the string is found (without replacing anything)."""
 
     global doc
 
@@ -25,7 +25,7 @@ def show_line(current_text):
 
 
 def replace_string(old_text, new_text):
-    """Replaces an old string (placeholder) with a new string without changing the formatting of the text"""
+    """Replaces an old string (placeholder) with a new string without changing the formatting of the text."""
 
     global doc
 
@@ -41,8 +41,32 @@ def replace_string(old_text, new_text):
     return
 
 
+def replace_string_up_to_paragraph(old_text, new_text, paragraph_number):
+    """
+    Replaces an old string (placeholder) with a new string without changing the format of the text
+    but only up to a specific paragraph number.
+    """
+
+    global doc
+
+    for index, p in enumerate(doc.paragraphs):
+        
+        # Replace every instance before paragraph number 'paragraph_number'
+        if index < paragraph_number:
+
+            if old_text in p.text:
+                inline = p.runs
+
+                for i in range(len(inline)):
+                    if old_text in inline[i].text:
+                        text = inline[i].text.replace(str(old_text), str(new_text))
+                        inline[i].text = text
+
+    return
+
+
 def delete_paragraph(paragraph):
-    """Delete a paragraph. Input must be a paragraph object"""
+    """Delete a paragraph. Input must be a paragraph object."""
 
     p = paragraph._element
     p.getparent().remove(p)
@@ -52,7 +76,7 @@ def delete_paragraph(paragraph):
 
 
 def remove_lines(first_line, number_of_lines):
-    """Remove a line including any keyword (first_line), and a certain number of rows after that"""
+    """Remove a line including any keyword (first_line), and a certain number of rows after that."""
 
     list_of_paragraphs = []
 
@@ -90,5 +114,6 @@ if __name__ == '__main__':
     
     show_line('Section A')
     replace_string('placeholder', 'new text')
+    replace_string_up_to_paragraph('placeholder', 'new text', 10)
     remove_lines('remove this line', 1)
     remove_lines('remove the next 5 lines', 5)
