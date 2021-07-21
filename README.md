@@ -17,4 +17,6 @@ Functions
     but only up to a specific paragraph number.
 - `delete_paragraph(paragraph)`: Delete a paragraph. Input must be a paragraph object. This function is used by the following function.
 - `remove_lines(first_line, number_of_lines)`: Remove a line including any keyword, and a certain number of rows after that. This allows for removal of entire sections/paragraphs or simply a few lines of text, depending on your inputs.
+- `add_text_in_table`: Add text to a cell in a table.
+- `change_table_font_size`: Change the font size af a full table.
 
