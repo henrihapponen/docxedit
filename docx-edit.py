@@ -2,6 +2,7 @@
 
 # Import
 from docx import Document
+from docx.shared import Pt
 
 
 # Function definitions
@@ -101,6 +102,28 @@ def remove_lines(first_line, number_of_lines):
                     print('Could not remove line ' + str(index + 1 + c))
                     c += 1
                     continue
+
+    return
+
+
+def add_text_in_table(table, row_num, column_num, new_text):
+    """Add text to a cell in a table."""
+
+    table.cell(row_num, column_num).text = new_text
+
+    return
+
+
+def change_table_font_size(table, font_size):
+    """Change the font size af the whole table."""
+
+    for row in table.rows:
+        for cell in row.cells:
+            paragraphs = cell.paragraphs
+            for paragraph in paragraphs:
+                for run in paragraph.runs:
+                    font = run.font
+                    font.size = Pt(font_size)
 
     return
 
