@@ -1,14 +1,14 @@
-# Useful functions to edit Word Documents with Python (python-docx)
+# Useful functions to edit Microsoft Word Documents with Python (using python-docx)
 
-Edit existing Word documents effortlessly and without changing the original formatting of the document. These tools are very useful if you want to automate document writing or editing and you need to adhere to strict formatting rules.
+Edit existing Word documents effortlessly and without changing the original formatting of the document. These tools are very useful if you want to automate document writing or editing and you need to adhere to strict formatting rules. I haven't found anything similar to these online so I thought I'd share them here.
 
 ## Requirements
 
-Need to have python-docx installed and imported
+Need to have python-docx installed
 
 ## Functions
 
-All of these functions work mainly with 'runs', which are sequences of strings with the same formatting style.
+All of these functions work primarily with 'runs', which are sequences of strings with the same formatting style.
 
 Functions
 - `show_line(current_text)`: Prints out the 'line' of text in the document where the string is found (without replacing anything). A 'line' is typically a paragraph but it can be shorter if the formatting changes before the end of the paragraph (i.e. if the 'run' ends).
