@@ -1,16 +1,8 @@
-# Useful functions to edit Word Documents with Python-Docx module
-
-# Import
-from docx import Document
-from docx.shared import Pt
+import docx
 
 
-# Function definitions
-
-def show_line(current_text):
+def show_line(doc, current_text):
     """Shows the 'line' of text in the doc where the string is found (without replacing anything)."""
-
-    global doc
 
     for p in doc.paragraphs:
         if current_text in p.text:
@@ -25,10 +17,8 @@ def show_line(current_text):
     return
 
 
-def replace_string(old_text, new_text):
+def replace_string(doc, old_text, new_text):
     """Replaces an old string (placeholder) with a new string without changing the formatting of the text."""
-
-    global doc
 
     for p in doc.paragraphs:
         if old_text in p.text:
@@ -42,16 +32,14 @@ def replace_string(old_text, new_text):
     return
 
 
-def replace_string_up_to_paragraph(old_text, new_text, paragraph_number):
+def replace_string_up_to_paragraph(doc, old_text, new_text, paragraph_number):
     """
     Replaces an old string (placeholder) with a new string without changing the format of the text
     but only up to a specific paragraph number.
     """
 
-    global doc
-
     for index, p in enumerate(doc.paragraphs):
-        
+
         # Replace every instance before paragraph number 'paragraph_number'
         if index < paragraph_number:
 
@@ -66,8 +54,8 @@ def replace_string_up_to_paragraph(old_text, new_text, paragraph_number):
     return
 
 
-def delete_paragraph(paragraph):
-    """Delete a paragraph. Input must be a paragraph object."""
+def remove_paragraph(paragraph):
+    """Remove a paragraph. Input must be a paragraph object."""
 
     p = paragraph._element
     p.getparent().remove(p)
@@ -76,7 +64,7 @@ def delete_paragraph(paragraph):
     return
 
 
-def remove_lines(first_line, number_of_lines):
+def remove_lines(doc, first_line, number_of_lines):
     """Remove a line including any keyword (first_line), and a certain number of rows after that."""
 
     list_of_paragraphs = []
@@ -123,20 +111,6 @@ def change_table_font_size(table, font_size):
             for paragraph in paragraphs:
                 for run in paragraph.runs:
                     font = run.font
-                    font.size = Pt(font_size)
+                    font.size = docx.shared.Pt(font_size)
 
     return
-
-
-if __name__ == '__main__':
-
-    # For example:
-    
-    document_path = 'your full document path here'
-    doc = Document(document_path)
-    
-    show_line('Section A')
-    replace_string('placeholder', 'new text')
-    replace_string_up_to_paragraph('placeholder', 'new text', 10)
-    remove_lines('remove this line', 1)
-    remove_lines('remove the next 5 lines', 5)
