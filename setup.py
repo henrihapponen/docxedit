@@ -4,8 +4,9 @@ classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'Operating System :: Microsoft :: Windows :: Windows 10',
+    'Operating System :: MacOS :: MacOS X',
     'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python :: 3'
+    'Programming Language :: Python'
 ]
 
 setup(
@@ -21,5 +22,5 @@ setup(
     classifiers=classifiers,
     keywords=['docx', 'python-docx', 'docxedit'],
     packages=find_packages,
-    install_requires='python-docx'
+    install_requires=['python-docx>=0.8.0']
 )
