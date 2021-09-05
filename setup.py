@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 classifiers = [
-    'Development Status :: 5 - Production/Stable',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'Operating System :: Microsoft :: Windows :: Windows 10',
     'License :: OSI Approved :: MIT License',
@@ -13,7 +13,7 @@ setup(
     version='0.0.1',
     description='Edit Word documents, keep original format.',
     long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
-    url='',
+    url='https://github.com/henrihapponen/docxedit',
     author='Henri Happonen',
     author_email='henkka.happonen@gmail.com',
     license='MIT',
