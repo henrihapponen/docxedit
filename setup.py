@@ -14,7 +14,7 @@ setup(
     description='Edit Word documents, keep original format.',
     long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
     url='https://github.com/henrihapponen/docxedit',
-    download_url='https://github.com/henrihapponen/docxedit/archive/refs/tags/0.0.1.tar.gz'
+    download_url='https://github.com/henrihapponen/docxedit/archive/refs/tags/0.0.1.tar.gz',
     author='Henri Happonen',
     author_email='henkka.happonen@gmail.com',
     license='MIT',
