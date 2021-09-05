@@ -9,7 +9,7 @@ classifiers = [
 ]
 
 setup(
-    name='docx-edit',
+    name='docxedit',
     version='0.0.1',
     description='Edit Word documents, keep original format.',
     long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
@@ -18,7 +18,7 @@ setup(
     author_email='henkka.happonen@gmail.com',
     license='MIT',
     classifiers=classifiers,
-    keywords='docx',
+    keywords=['docx', 'python-docx', 'docxedit', 'docx-edit'],
     packages=find_packages,
-    install_requires='docx'
+    install_requires='python-docx'
 )
