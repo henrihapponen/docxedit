@@ -19,7 +19,7 @@ setup(
     author_email='henkka.happonen@gmail.com',
     license='MIT',
     classifiers=classifiers,
-    keywords=['docx', 'python-docx', 'docxedit', 'docx-edit'],
+    keywords=['docx', 'python-docx', 'docxedit'],
     packages=find_packages,
     install_requires='python-docx'
 )
