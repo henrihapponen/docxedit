@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "docxedit"
+version = "1.0.0"
+authors = [
+  { name="Henri Happonen", email="henkka.happonen@gmail.com" },
+]
+license = "MIT"
+description = "Edit Word documents but keep original formatting"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "python-docx >= 0.8.0",
+]
+keywords = [
+  "docx",
+  "word",
+  "document",
+  "edit",
+  "formatting",
+  "python-docx",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/henrihapponen/docxedit"
+"Bug Tracker" = "https://github.com/henrihapponen/docxedit/issues"
