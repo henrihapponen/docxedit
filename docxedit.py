@@ -1,12 +1,12 @@
 import docx
 
 
-def show_line(doc, current_text: str):
+def show_line(doc: object, current_text: str):
     """
     Shows the 'line' of text in the doc where the string is found (without replacing anything).
     Args:
-        doc: The docx document.
-        current_text: The string to search for.
+        doc (Object): The docx document object.
+        current_text (String): The string to search for.
     Returns:
         The line of text where the string is found.
     """
@@ -27,14 +27,14 @@ def show_line(doc, current_text: str):
         print(f'Error: Could not find {current_text}: {e}')
 
 
-def replace_string(doc, old_string: str, new_string: str):
+def replace_string(doc: object, old_string: str, new_string: str):
     """
     Replaces an old string (placeholder) with a new string
     without changing the formatting of the text.
     Args:
-        doc: The docx document.
-        old_string: The old string to replace.
-        new_string: The new string to replace the old one with.
+        doc (Object): The docx document object.
+        old_string (String): The old string to replace.
+        new_string (String): The new string to replace the old one with.
     Returns:
         Success or Error.
     """
@@ -52,22 +52,22 @@ def replace_string(doc, old_string: str, new_string: str):
             print(f'Error: Could not find {old_string}')
 
 
-def replace_string_up_to_paragraph(doc, old_string, new_string,
-                                   paragraph_number):
+def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str,
+                                   paragraph_number: int):
     """
     Replaces an old string (placeholder) with a new string
     without changing the format of the text but only up to
     a specific paragraph number.
     Args:
-        doc: The docx document.
-        old_string: The old string to replace.
-        new_string: The new string to replace the old one with.
-        paragraph_number: The paragraph number to stop at.
+        doc (Object): The docx document object.
+        old_string (String): The old string to replace.
+        new_string (String): The new string to replace the old one with.
+        paragraph_number (Integer): The paragraph number to stop at.
     """
 
     for index, paragraph in enumerate(doc.paragraphs):
 
-        # Replace every instance before paragraph number 'paragraph_number'
+        # Replace every instance before paragraph_number
         if index < paragraph_number:
 
             if old_string in paragraph.text:
@@ -80,11 +80,11 @@ def replace_string_up_to_paragraph(doc, old_string, new_string,
                 print(f'Success: Replaced {old_string} with {new_string} up to paragraph {index}')
 
 
-def remove_paragraph(paragraph):
+def remove_paragraph(paragraph: object):
     """
     Remove a paragraph. Input must be a paragraph object.
     Args:
-        paragraph: The paragraph object to remove.
+        paragraph (Object): The paragraph object to remove.
     Returns:
         Success or Error.
     """
@@ -93,9 +93,9 @@ def remove_paragraph(paragraph):
         paragraph_element = paragraph._element
         paragraph_element.getparent().remove(paragraph_element)
         paragraph._p = paragraph._element = None
-        print(f'Success: Removed paragraph {paragraph}')
+        return print(f'Success: Removed paragraph {paragraph}')
     except Exception as e:
-        print(f'Error: Could not remove paragraph {paragraph}: {e}')
+        return print(f'Error: Could not remove paragraph {paragraph}: {e}')
 
 
 def remove_lines(doc, first_line: str, number_of_lines: int):
@@ -103,9 +103,9 @@ def remove_lines(doc, first_line: str, number_of_lines: int):
     Remove a line including any keyword (first_line),
     and a certain number of rows after that.
     Args:
-        doc: The docx document.
-        first_line: The first line to remove.
-        number_of_lines: The number of lines to remove.
+        doc (Object): The docx document object.
+        first_line (String): The first line to remove.
+        number_of_lines (Integer): The number of lines to remove.
     Returns:
         Success or Error.
     """
@@ -140,27 +140,28 @@ def add_text_in_table(table, row_num: int, column_num: int, new_string: str):
     """
     Add text to a cell in a table.
     Args:
-        table: The table object.
-        row_num: The row number to add the text to.
-        column_num: The column number to add the text to.
-        new_string: The text to add.
+        table (Object): The table object.
+        row_num (Integer): The row number to add the text to.
+        column_num (Integer): The column number to add the text to.
+        new_string (String): The text to add.
     Returns:
         Success or Error.
     """
 
     try:
         table.cell(row_num, column_num).text = new_string
-        print(f'Success: Added {new_string} to row {row_num} and column {column_num}')
+        return print(f'Success: Added {new_string} to row {row_num} and column {column_num}')
     except Exception as e:
-        print(f'Error: Could not add {new_string} to row {row_num} and column {column_num}: {e}')
+        return print(f'Error: Could not add {new_string} to row {row_num} '
+                     f'and column {column_num}: {e}')
 
 
-def change_table_font_size(table, font_size: int):
+def change_table_font_size(table: object, font_size: int):
     """
     Change the font size af the whole table.
     Args:
-        table: The table object.
-        font_size: The font size to change to.
+        table (Object): The table object.
+        font_size (Integer): The font size to change to.
     Returns:
         Success or Error.
     """
@@ -168,11 +169,10 @@ def change_table_font_size(table, font_size: int):
     try:
         for row in table.rows:
             for cell in row.cells:
-                paragraphs = cell.paragraphs
-                for paragraph in paragraphs:
+                for paragraph in cell.paragraphs:
                     for run in paragraph.runs:
                         font = run.font
                         font.size = docx.shared.Pt(font_size)
-        print(f'Success: Changed font size to {font_size}')
+        return print(f'Success: Changed font size to {font_size}')
     except Exception as e:
-        print(f'Error: Could not change font size to {font_size}: {e}')
+        return print(f'Error: Could not change font size to {font_size}: {e}')
