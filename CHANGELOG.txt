@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2022-10-09
+## [1.0.1] - 2022-10-31
 ### Added
 - Better documentation
+
+## [1.0.0] - 2022-10-09
+### Added
 - pyproject.toml
 - Small code improvements
 
