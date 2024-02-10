@@ -1,6 +1,6 @@
-# Mass Edit Word Documents But Keep Original Formatting
+# Mass Edit Word Documents Without Changing the Original Formatting
 
-Edit existing Word documents effortlessly and without changing the original formatting of the document. 
+Edit Word documents effortlessly and without changing the original formatting of the document. 
 
 As great as the original `docx` library is, this "keep same format" feature is not natively supported. However, this functionality is pretty useful if you want to automate document writing or editing and need to adhere to strict formatting rules. Hence, I wrote this small add-on module.
 
@@ -27,14 +27,14 @@ import docxedit
 
 document = Document()
 
-# Replace all instances of the word 'Hello' in the document by 'Goodbye'
+# Replace all instances of the word 'Hello' in the document with 'Goodbye'
 docxedit.replace_string(document, old_string='Hello', new_string='Goodbye')
 
-# Replace all instances of the word 'Hello' in the document by 'Goodbye' but only
+# Replace all instances of the word 'Hello' in the document with 'Goodbye' but only
 # up to paragraph 10
 docxedit.replace_string_up_to_paragraph(document, old_string='Hello', new_string='Goodbye', 
                                         paragraph_number=10)
 
-# Remove any line that contains the word 'Hello' along with the next 5 lines
+# Remove any line that contains the word 'Hello' along with the next 5 lines after that
 docxedit.remove_lines(document, first_line='Hello', number_of_lines=5)
 ```
