@@ -1,13 +1,13 @@
 import docx
 
 
-def show_line(doc: object, current_text: str, show_errors: bool = False):
+def show_line(doc: object, current_text: str, show_errors: bool = True):
     """
     Shows the 'line' of text in the doc where the string is found (without replacing anything).
     Args:
         doc (Object): The docx document object.
         current_text (str): The string to search for.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     Returns:
         The line of text where the string is found, if it is found.
     """
@@ -29,7 +29,7 @@ def show_line(doc: object, current_text: str, show_errors: bool = False):
         print(f'Error: An Exception occurred: {e}')
 
 
-def replace_string(doc: object, old_string: str, new_string: str, show_errors: bool = False):
+def replace_string(doc: object, old_string: str, new_string: str, show_errors: bool = True):
     """
     Replaces an old string (placeholder) with a new string
     without changing the formatting of the text.
@@ -37,7 +37,7 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
         doc (Object): The docx document object.
         old_string (str): The old string to replace.
         new_string (str): The new string to replace the old one with.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     Returns:
         Success or Error.
     """
@@ -57,7 +57,7 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
 
 
 def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str,
-                                   paragraph_number: int, show_errors: bool = False):
+                                   paragraph_number: int, show_errors: bool = True):
     """
     Replaces an old string (placeholder) with a new string
     without changing the format of the text but only up to
@@ -67,7 +67,7 @@ def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str
         old_string (str): The old string to replace.
         new_string (str): The new string to replace the old one with.
         paragraph_number (int): The paragraph number to stop at.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     """
 
     try:
@@ -91,12 +91,12 @@ def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str
                 f'Error: Could not find {old_string} up to paragraph {index} due to excpetion: {e}')
 
 
-def remove_paragraph(paragraph: object, show_errors: bool = False):
+def remove_paragraph(paragraph: object, show_errors: bool = True):
     """
     Remove a paragraph. Input must be a paragraph object.
     Args:
         paragraph (Object): The paragraph object to remove.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     Returns:
         Success or Error.
     """
@@ -111,7 +111,7 @@ def remove_paragraph(paragraph: object, show_errors: bool = False):
             return print(f'Error: Could not remove paragraph {paragraph}: {e}')
 
 
-def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool = False):
+def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool = True):
     """
     Remove a line including any keyword (first_line),
     and a certain number of rows after that.
@@ -119,7 +119,7 @@ def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool =
         doc (Object): The docx document object.
         first_line (String): The first line to remove.
         number_of_lines (Integer): The number of lines to remove.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     Returns:
         Success or Error.
     """
@@ -154,7 +154,7 @@ def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool =
 
 
 def add_text_in_table(table, row_num: int, column_num: int,
-                      new_string: str, show_errors: bool = False):
+                      new_string: str, show_errors: bool = True):
     """
     Add text to a cell in a table.
     Args:
@@ -176,13 +176,13 @@ def add_text_in_table(table, row_num: int, column_num: int,
                          f'and column {column_num} due to exception: {e}')
 
 
-def change_table_font_size(table: object, font_size: int, show_errors: bool = False):
+def change_table_font_size(table: object, font_size: int, show_errors: bool = True):
     """
     Change the font size af the whole table.
     Args:
         table (Object): The table object.
         font_size (Integer): The font size to change to.
-        show_errors (bool): Whether to show errors or not. Default is False.
+        show_errors (bool): Whether to show errors or not. Default is True.
     Returns:
         Success or Error.
     """
