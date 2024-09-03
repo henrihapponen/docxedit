@@ -24,7 +24,7 @@ Most of the functions in this module work primarily with **runs**, which are seq
 from docx import Document
 import docxedit
 
-document = Document()
+document = Document('path/to/your/document.docx')
 
 # Replace all instances of the word 'Hello' in the document with 'Goodbye'
 docxedit.replace_string(document, old_string='Hello', new_string='Goodbye')
@@ -36,4 +36,7 @@ docxedit.replace_string_up_to_paragraph(document, old_string='Hello', new_string
 
 # Remove any line that contains the word 'Hello' along with the next 5 lines after that
 docxedit.remove_lines(document, first_line='Hello', number_of_lines=5)
+
+# Save the document
+document.save('path/to/your/edited/document.docx')
 ```
