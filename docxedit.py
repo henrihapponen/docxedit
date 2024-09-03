@@ -29,7 +29,8 @@ def show_line(doc: object, current_text: str, show_errors: bool = True):
         print(f'Error: An Exception occurred: {e}')
 
 
-def replace_string(doc: object, old_string: str, new_string: str, show_errors: bool = False):
+def replace_string(doc: object, old_string: str, new_string: str,
+                   include_tables: bool = True, show_errors: bool = False):
     """
     Replaces an old string (placeholder) with a new string
     without changing the formatting of the text.
@@ -37,6 +38,7 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
         doc (Object): The docx document object.
         old_string (str): The old string to replace.
         new_string (str): The new string to replace the old one with.
+        include_tables (bool): Whether to include tables or not. Default is True.
         show_errors (bool): Whether to show errors or not. Default is False.
     Returns:
         Success or Error.
@@ -53,10 +55,29 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
                     text = inline[i].text.replace(str(old_string), str(new_string))
                     inline[i].text = text
                     string_instances_replaced += 1
-            print(f'Success: Replaced the string "{old_string}" with "{new_string}"')
+            print(f'Success: Replaced the string "{old_string}" with "{new_string}" in a paragraph')
         else:
             if show_errors:
                 print(f'Error: Could not find the string "{old_string}" in the document')
+
+    if include_tables:
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    for paragraph in cell.paragraphs:
+                        if old_string in paragraph.text:
+                            inline = paragraph.runs
+
+                            for i in range(len(inline)):
+                                if old_string in inline[i].text:
+                                    text = inline[i].text.replace(str(old_string), str(new_string))
+                                    inline[i].text = text
+                            string_instances_replaced += 1
+                            print(f'Success: Replaced the string "{old_string}" '
+                                  f'with "{new_string}" in a table')
+                        else:
+                            if show_errors:
+                                print(f'Error: Could not find {old_string} in a table')
 
     print(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
           f'with "{new_string}"')
