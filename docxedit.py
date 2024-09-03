@@ -29,7 +29,7 @@ def show_line(doc: object, current_text: str, show_errors: bool = True):
         print(f'Error: An Exception occurred: {e}')
 
 
-def replace_string(doc: object, old_string: str, new_string: str, show_errors: bool = True):
+def replace_string(doc: object, old_string: str, new_string: str, show_errors: bool = False):
     """
     Replaces an old string (placeholder) with a new string
     without changing the formatting of the text.
@@ -37,10 +37,12 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
         doc (Object): The docx document object.
         old_string (str): The old string to replace.
         new_string (str): The new string to replace the old one with.
-        show_errors (bool): Whether to show errors or not. Default is True.
+        show_errors (bool): Whether to show errors or not. Default is False.
     Returns:
         Success or Error.
     """
+
+    string_instances_replaced = 0
 
     for paragraph in doc.paragraphs:
         if old_string in paragraph.text:
@@ -50,10 +52,14 @@ def replace_string(doc: object, old_string: str, new_string: str, show_errors: b
                 if old_string in inline[i].text:
                     text = inline[i].text.replace(str(old_string), str(new_string))
                     inline[i].text = text
-            print(f'Success: Replaced {old_string} with {new_string}')
+                    string_instances_replaced += 1
+            print(f'Success: Replaced the string "{old_string}" with "{new_string}"')
         else:
             if show_errors:
-                print(f'Error: Could not find {old_string}')
+                print(f'Error: Could not find the string "{old_string}" in the document')
+
+    print(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
+          f'with "{new_string}"')
 
 
 def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str,
@@ -70,25 +76,26 @@ def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str
         show_errors (bool): Whether to show errors or not. Default is True.
     """
 
-    try:
-        for index, paragraph in enumerate(doc.paragraphs):
+    string_instances_replaced = 0
 
-            # Replace every instance before paragraph_number
-            if index < paragraph_number:
+    for index, paragraph in enumerate(doc.paragraphs):
+        if index < paragraph_number:
+            if old_string in paragraph.text:
+                inline = paragraph.runs
 
-                if old_string in paragraph.text:
-                    inline = paragraph.runs
+                for i in range(len(inline)):
+                    if old_string in inline[i].text:
+                        text = inline[i].text.replace(str(old_string), str(new_string))
+                        inline[i].text = text
 
-                    for i in range(len(inline)):
-                        if old_string in inline[i].text:
-                            text = inline[i].text.replace(str(old_string), str(new_string))
-                            inline[i].text = text
-                    print(
-                        f'Success: Replaced {old_string} with {new_string} up to paragraph {index}')
-    except Exception as e:
-        if show_errors:
-            print(
-                f'Error: Could not find {old_string} up to paragraph {index} due to excpetion: {e}')
+                string_instances_replaced += 1
+
+                print(
+                    f'Success: Replaced the string "{old_string}" with "{new_string}" '
+                    f'in paragraph number {index}')
+
+    print(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
+          f'with "{new_string}"')
 
 
 def remove_paragraph(paragraph: object, show_errors: bool = True):
@@ -178,7 +185,7 @@ def add_text_in_table(table, row_num: int, column_num: int,
 
 def change_table_font_size(table: object, font_size: int, show_errors: bool = True):
     """
-    Change the font size af the whole table.
+    Change the font size of the whole table.
     Args:
         table (Object): The table object.
         font_size (Integer): The font size to change to.
