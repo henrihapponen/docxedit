@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/henrihapponen/docxedit/compare/v1.0.3...v1.0.4) (2024-09-03)
+
+
+### Bug Fixes
+
+* Add options for hiding errors ([#12](https://github.com/henrihapponen/docxedit/issues/12)) ([81637fb](https://github.com/henrihapponen/docxedit/commit/81637fba873089b3495a4675cc31b5d395d23e0f))
+* Include tables in replace_string function ([#14](https://github.com/henrihapponen/docxedit/issues/14)) ([053b67d](https://github.com/henrihapponen/docxedit/commit/053b67dbd3242733d4f7bc778e9e897b4e8ea7ff))
+
 ## [1.0.3](https://github.com/henrihapponen/docxedit/compare/v1.0.2...v1.0.3) (2024-02-10)
 
 
