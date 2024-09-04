@@ -3,7 +3,8 @@
 Edit Word documents effortlessly and without changing the original formatting of the document. 
 
 The original `docx` library is great but it's missing one important feature: *keeping the original formatting*.
-However, this functionality is pretty useful if you want to automate document writing or editing and need to adhere to strict formatting rules. This is a common requirement in corporate environment for example.
+
+However, this functionality is pretty useful if you want to automate document writing or editing and need to adhere to strict formatting rules. This is a common requirement in corporate environments for example.
 
 This module adds that feature with some functions that allow editing documents without changing the original formatting.
 
