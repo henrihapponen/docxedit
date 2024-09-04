@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/henrihapponen/docxedit/compare/v1.0.4...v1.1.0) (2024-09-04)
+
+
+### Features
+
+* Added PyPI GHA pipeline ([#17](https://github.com/henrihapponen/docxedit/issues/17)) ([df16c05](https://github.com/henrihapponen/docxedit/commit/df16c05095ec124de1dc623b4f1428a430039aeb))
+
 ## [1.0.4](https://github.com/henrihapponen/docxedit/compare/v1.0.3...v1.0.4) (2024-09-03)
 
 
