@@ -10,13 +10,13 @@ This module adds that feature with some functions that allow editing documents w
 
 [![PyPI version](https://badge.fury.io/py/docxedit.svg)](https://badge.fury.io/py/docxedit)
 
-## Installation
+## Install
 
 With pip: `pip install docxedit`
 
 ## Dependencies
 
-Included as a dependency: `python-docx`
+Included as a dependency: `python-docx` (`docx`)
 
 ## Functionalities
 Most of the functions in this module work primarily with **runs**, which are sequences of strings with the same formatting style. Breaking the document into runs allows us to edit the text without changing the original formatting.
