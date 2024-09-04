@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/henrihapponen/docxedit/compare/v1.1.0...v1.1.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* Update README.md ([#20](https://github.com/henrihapponen/docxedit/issues/20)) ([b84a6fc](https://github.com/henrihapponen/docxedit/commit/b84a6fc7780e745a2c155ff2774e10638da85b74))
+
 ## [1.1.0](https://github.com/henrihapponen/docxedit/compare/v1.0.4...v1.1.0) (2024-09-04)
 
 
