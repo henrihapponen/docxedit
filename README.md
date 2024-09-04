@@ -18,7 +18,9 @@ Included as a dependency: `python-docx`
 
 Most of the functions in this module work primarily with **runs**, which are sequences of strings with the same formatting style. Breaking the document into runs allows us to edit the text without changing the original formatting.
 
-## Example Usage
+## How to Use
+
+Usage of this module is really simple. Here are some examples:
 
 ```python
 from docx import Document
@@ -37,7 +39,7 @@ docxedit.replace_string_up_to_paragraph(document, old_string='Hello', new_string
 # Remove any line that contains the word 'Hello' along with the next 5 lines after that
 docxedit.remove_lines(document, first_line='Hello', number_of_lines=5)
 
-# Add text in table cell (row 1, column 1) in the first table in the document
+# Add text in a table cell (row 1, column 1) in the first table in the document
 docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string='Hello')
 
 # Save the document
