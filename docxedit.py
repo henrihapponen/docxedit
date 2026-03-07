@@ -1,4 +1,8 @@
+import logging
+
 import docx
+
+logger = logging.getLogger(__name__)
 
 
 def show_line(doc: object, current_text: str, show_errors: bool = True):
@@ -21,12 +25,12 @@ def show_line(doc: object, current_text: str, show_errors: bool = True):
                     if current_text in inline[i].text:
                         text = inline[i].text
                         inline[i].text = text
-                print(f'Text found in line: {paragraph.text}')
+                logger.debug(f'Text found in line: {paragraph.text}')
             else:
                 if show_errors:
-                    print(f'Error: {current_text} not found in document.')
+                    logger.error(f'{current_text} not found in document.')
     except Exception as e:
-        print(f'Error: An Exception occurred: {e}')
+        logger.error(f'An Exception occurred: {e}')
 
 
 def replace_string(doc: object, old_string: str, new_string: str,
@@ -55,10 +59,10 @@ def replace_string(doc: object, old_string: str, new_string: str,
                     text = inline[i].text.replace(str(old_string), str(new_string))
                     inline[i].text = text
                     string_instances_replaced += 1
-            print(f'Success: Replaced the string "{old_string}" with "{new_string}" in a paragraph')
+            logger.debug(f'Success: Replaced the string "{old_string}" with "{new_string}" in a paragraph')
         else:
             if show_errors:
-                print(f'Error: Could not find the string "{old_string}" in the document')
+                logger.error(f'Could not find the string "{old_string}" in the document')
 
     if include_tables:
         for table in doc.tables:
@@ -73,14 +77,14 @@ def replace_string(doc: object, old_string: str, new_string: str,
                                     text = inline[i].text.replace(str(old_string), str(new_string))
                                     inline[i].text = text
                             string_instances_replaced += 1
-                            print(f'Success: Replaced the string "{old_string}" '
-                                  f'with "{new_string}" in a table')
+                            logger.debug(f'Success: Replaced the string "{old_string}" '
+                                         f'with "{new_string}" in a table')
                         else:
                             if show_errors:
-                                print(f'Error: Could not find {old_string} in a table')
+                                logger.error(f'Could not find {old_string} in a table')
 
-    print(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
-          f'with "{new_string}"')
+    logger.info(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
+                f'with "{new_string}"')
 
 
 def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str,
@@ -111,12 +115,12 @@ def replace_string_up_to_paragraph(doc: object, old_string: str, new_string: str
 
                 string_instances_replaced += 1
 
-                print(
+                logger.debug(
                     f'Success: Replaced the string "{old_string}" with "{new_string}" '
                     f'in paragraph number {index}')
 
-    print(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
-          f'with "{new_string}"')
+    logger.info(f'Summary: Replaced {string_instances_replaced} instances of "{old_string}" '
+                f'with "{new_string}"')
 
 
 def remove_paragraph(paragraph: object, show_errors: bool = True):
@@ -133,10 +137,12 @@ def remove_paragraph(paragraph: object, show_errors: bool = True):
         paragraph_element = paragraph._element
         paragraph_element.getparent().remove(paragraph_element)
         paragraph._p = paragraph._element = None
-        return print(f'Success: Removed paragraph {paragraph}')
+        logger.debug(f'Success: Removed paragraph {paragraph}')
+        return
     except Exception as e:
         if show_errors:
-            return print(f'Error: Could not remove paragraph {paragraph}: {e}')
+            logger.error(f'Could not remove paragraph {paragraph}: {e}')
+            return
 
 
 def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool = True):
@@ -163,20 +169,20 @@ def remove_lines(doc, first_line: str, number_of_lines: int, show_errors: bool =
                 remove_paragraph(i)
             except AttributeError:
                 if show_errors:
-                    print(f'Error: Could not remove line {index}: {i.text}')
+                    logger.error(f'Could not remove line {index}: {i.text}')
 
             b_var = 0
             c_var = 0
             while b_var < number_of_lines:
                 try:
-                    print(list_of_paragraphs[index + 1 + b_var])
+                    logger.debug(list_of_paragraphs[index + 1 + b_var])
                     remove_paragraph(list_of_paragraphs[index + 1 + c_var])
                     b_var += 1
-                    print(f'Success: Removed line {str(index + 1 + c_var)}')
+                    logger.debug(f'Success: Removed line {str(index + 1 + c_var)}')
                 except Exception as e:
                     if show_errors:
-                        print(f'Error: Could not remove line {str(index + 1 + c_var)} '
-                              f'due to exception: {e}')
+                        logger.error(f'Could not remove line {str(index + 1 + c_var)} '
+                                     f'due to exception: {e}')
                     c_var += 1
                     continue
 
@@ -197,11 +203,13 @@ def add_text_in_table(table, row_num: int, column_num: int,
 
     try:
         table.cell(row_num, column_num).text = new_string
-        return print(f'Success: Added {new_string} to row {row_num} and column {column_num}')
+        logger.debug(f'Success: Added {new_string} to row {row_num} and column {column_num}')
+        return
     except Exception as e:
         if show_errors:
-            return print(f'Error: Could not add {new_string} to row {row_num} '
+            logger.error(f'Could not add {new_string} to row {row_num} '
                          f'and column {column_num} due to exception: {e}')
+            return
 
 
 def change_table_font_size(table: object, font_size: int, show_errors: bool = True):
@@ -222,7 +230,9 @@ def change_table_font_size(table: object, font_size: int, show_errors: bool = Tr
                     for run in paragraph.runs:
                         font = run.font
                         font.size = docx.shared.Pt(font_size)
-        return print(f'Success: Changed font size to {font_size}')
+        logger.debug(f'Success: Changed font size to {font_size}')
+        return
     except Exception as e:
         if show_errors:
-            return print(f'Error: Could not change font size to {font_size}: {e}')
+            logger.error(f'Could not change font size to {font_size}: {e}')
+            return
