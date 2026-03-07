@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/henrihapponen/docxedit/compare/v1.1.3...v1.2.0) (2026-03-07)
+
+
+### Features
+
+* Fix logging ([#27](https://github.com/henrihapponen/docxedit/issues/27)) ([c0f5af2](https://github.com/henrihapponen/docxedit/commit/c0f5af26e007ec00282a0aa5e39feab991d64ab7))
+
 ## [1.1.3](https://github.com/henrihapponen/docxedit/compare/v1.1.2...v1.1.3) (2024-09-04)
 
 
