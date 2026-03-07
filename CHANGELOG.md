@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/henrihapponen/docxedit/compare/v1.2.0...v1.2.1) (2026-03-07)
+
+
+### Bug Fixes
+
+* Fix automated PyPI release pipeline ([#31](https://github.com/henrihapponen/docxedit/issues/31)) ([a299d34](https://github.com/henrihapponen/docxedit/commit/a299d347b9266f5e36670e1b8afeffd2dc7ba84d))
+
 ## [1.2.0](https://github.com/henrihapponen/docxedit/compare/v1.1.3...v1.2.0) (2026-03-07)
 
 
