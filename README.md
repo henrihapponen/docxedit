@@ -1,4 +1,4 @@
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/docxedit?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/docxedit)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/docxedit?period=total&units=INTERNATIONAL_SYSTEM&left_color=GRAY&right_color=BLUE&left_text=Downloads)](https://pepy.tech/projects/docxedit)
 [![PyPI version](https://badge.fury.io/py/docxedit.svg)](https://badge.fury.io/py/docxedit)
 
 # docxedit
