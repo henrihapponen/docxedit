@@ -11,7 +11,7 @@ authors = [
 license = "MIT"
 description = "Edit Word documents but keep original formatting"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -28,6 +28,9 @@ keywords = [
   "formatting",
   "python-docx",
 ]
+
+[project.optional-dependencies]
+test = ["pytest"]
 
 [project.urls]
 "Homepage" = "https://github.com/henrihapponen/docxedit"
